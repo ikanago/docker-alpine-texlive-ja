@@ -1,0 +1,24 @@
+name: Publish Image
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build and Push Ubuntu Image
+        uses: docker/build-push-action@v2
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ${{ env.REGISTRY }}
+          repository: ${{ github.repository }}
+          context: .
+          file: Dockerfile
+          push: true
+          tags: ${{ github.repository }}/docker-texlive
