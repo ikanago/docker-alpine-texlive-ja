@@ -19,7 +19,7 @@ jobs:
         with:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          registry: ${{ env.REGISTRY }}
+          registry: ghcr.io
 
       - name: Build and Push Ubuntu Image
         uses: docker/build-push-action@v2
