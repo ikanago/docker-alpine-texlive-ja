@@ -1,6 +1,5 @@
 FROM paperist/alpine-texlive-ja:latest
 
-RUN apk del xz tar
 RUN rm -rf /var/cache/apk/*
 RUN rm -rf /tmp/*
 
