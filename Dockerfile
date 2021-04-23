@@ -1,8 +1,3 @@
-# Copyright (c) 2016 Kaito Udagawa
-# Copyright (c) 2016-2020 3846masa
-# Released under the MIT license
-# https://opensource.org/licenses/MIT
-
 FROM frolvlad/alpine-glibc:latest
 
 ENV PATH /usr/local/texlive/2020/bin/x86_64-linuxmusl:$PATH
@@ -27,6 +22,18 @@ RUN apk add --no-cache curl perl fontconfig-dev freetype-dev && \
     rm -fr /tmp/install-tl-unx && \
     apk del .fetch-deps
 
+RUN apk del xz tar
+RUN rm -rf /var/cache/apk/*
+RUN rm -rf /tmp/*
+
+RUN chmod -R 777 /usr/local/texlive
+
+ARG UID=1000
+RUN adduser -D -u ${UID} latex
+USER ${UID}
+
 WORKDIR /workdir
+
+COPY .latexmkrc .
 
 CMD ["sh"]
