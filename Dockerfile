@@ -11,6 +11,4 @@ USER ${UID}
 
 WORKDIR /workdir
 
-COPY .latexmkrc .
-
 CMD ["sh"]
