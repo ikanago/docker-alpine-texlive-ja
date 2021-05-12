@@ -1,5 +1,8 @@
 FROM paperist/alpine-texlive-ja:latest
 
+RUN apk update \
+    && apk add git
+
 RUN rm -rf /var/cache/apk/*
 RUN rm -rf /tmp/*
 
