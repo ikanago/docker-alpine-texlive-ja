@@ -30,5 +30,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          repository: ${{ github.repository }}
           tags: ${{ env.IMAGE_TAG }}
