@@ -1,4 +1,4 @@
-FROM debian:11.2-slim AS installer
+FROM ubuntu:22.10 AS installer
 ENV PATH /usr/local/bin/texlive:$PATH
 WORKDIR /install-tl-unx
 RUN apt-get update
@@ -13,13 +13,16 @@ RUN tar -xzf ./install-tl-unx.tar.gz --strip-components=1
 RUN ./install-tl --profile=texlive.profile
 RUN ln -sf /usr/local/texlive/*/bin/* /usr/local/bin/texlive
 RUN tlmgr install \
+  algorithms \
   collection-fontsrecommended \
   collection-langjapanese \
-  latexmk
+  collection-latexextra \
+  latexmk \
+  physics \
+  siunitx
 
 FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu-22.04
 ENV PATH /usr/local/bin/texlive:$PATH
-WORKDIR /workdir
 COPY --from=installer /usr/local/texlive /usr/local/texlive
 RUN apt-get update \
   && apt-get install -y \
