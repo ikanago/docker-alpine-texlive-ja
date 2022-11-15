@@ -1,7 +1,7 @@
 FROM ubuntu:22.10 AS installer
 ENV PATH /usr/local/bin/texlive:$PATH
 WORKDIR /install-tl-unx
-RUN apt-get update
+RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y \
   fontconfig \
   perl \
