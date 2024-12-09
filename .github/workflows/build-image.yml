@@ -29,7 +29,7 @@ jobs:
         id: metadata
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/${{ github.repository_owner }}/docker-texlive-${{ matrix.lang }}
+          images: ghcr.io/${{ github.repository_owner }}/docker-texlive
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
