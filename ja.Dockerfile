@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu-22.04
-ENV PATH /usr/local/bin/texlive:$PATH
+ENV PATH=/usr/local/bin/texlive:$PATH
 WORKDIR /install-tl-unx
 
 RUN apt-get update && apt-get upgrade -y
